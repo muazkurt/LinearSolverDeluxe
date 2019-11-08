@@ -1,4 +1,4 @@
-package inc.solutions.numerical.Behavior;
+package inc.solutions.numerical;
 
 public interface Matrix_Solve_Behavior
 {

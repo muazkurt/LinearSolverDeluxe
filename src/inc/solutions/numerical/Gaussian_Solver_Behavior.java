@@ -1,4 +1,4 @@
-package inc.solutions.numerical.Behavior;
+package inc.solutions.numerical;
 
 public class Gaussian_Solver_Behavior implements Matrix_Solve_Behavior
 {
