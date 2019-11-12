@@ -1,10 +1,21 @@
 package inc.solutions.numerical;
 
+/**
+ * This is a class implements Matrix_Solve_Behavior to create a new behavior to solve equations
+ * with Matrix Inverse method.
+ * @author Muaz Kurt
+ * @version 1.0.0
+ * @see inc.solutions.numerical.Matrix_Solve_Behavior
+ */
 public class Matrix_Inversion_Behavior implements Matrix_Solve_Behavior
 {
-	public Matrix_Inversion_Behavior()
-	{}
-
+	/**
+	 * Solves the given equations amd their results with Matrix Inversion Method.
+	 * Returns the calculated values.
+	 * @param input  MxM equation matrix to solve.
+	 * @param result M sized result matrix to solve.
+	 * @return the calculated values.
+	 */
 	@Override
 	public double[] solve(double[][] input, double[] result)
 	{
@@ -18,6 +29,13 @@ public class Matrix_Inversion_Behavior implements Matrix_Solve_Behavior
 		return return_val;
 	}
 
+	/**
+	 * Calculates the minor of given matrix at row-column position.
+	 * @param matrix a matrix that going to work gon.
+	 * @param row of the minor calculating position
+	 * @param column of the minor calculating position
+	 * @return Minor of matrix at row-column position.
+	 */
 	private double[][] minor(double[][] matrix, int row, int column)
 	{
 		double[][] minor = new double[matrix.length - 1][matrix.length - 1];
@@ -29,6 +47,11 @@ public class Matrix_Inversion_Behavior implements Matrix_Solve_Behavior
 		return minor;
 	}
 
+	/**
+	 * Calculates the determinant of the matrix.
+	 * @param matrix item to calculate determinant of.
+	 * @return result of the determinant of matrix.
+	 */
 	private double determinant(double[][] matrix)
 	{
 		if (matrix.length != matrix[0].length)
@@ -48,6 +71,11 @@ public class Matrix_Inversion_Behavior implements Matrix_Solve_Behavior
 		return det;
 	}
 
+	/**
+	 * Generates inverse of the matrix, if possible.
+	 * @param matrix that going to calculate inverse of.
+	 * @return inverse of the matrix.
+	 */
 	private double[][] inverse(double[][] matrix)
 	{
 		double[][] inverse = new double[matrix.length][matrix.length];

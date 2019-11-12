@@ -1,15 +1,23 @@
 package inc.solutions.numerical;
 
+/**
+ * This class implements Matrix Solve Behavior to create a behavior thar solves an matrix equation
+ * with Gaussian Elimination.
+ * @author Muaz Kurt
+ * @version 1.0.0
+ * @see inc.solutions.numerical.Matrix_Solve_Behavior
+ */
 public class Gaussian_Solver_Behavior implements Matrix_Solve_Behavior
 {
-    public Gaussian_Solver_Behavior()
-    {}
-
     private static final double EPSILON = 1e-10;
 
-    // Gaussian elimination with partial pivoting
-    @Override
-    public double[] solve(double[][] input, double[] result)
+    /**
+     * Gaussian Elimination method for finding elements of the given matrix.
+     * @param input MzM sized matrix that contains equations.
+     * @param result M sized matrix that contains result of input equations.
+     * @return M sized x elements that makes the equations possible.
+     */
+    private double[] gaussian(double[][] input, double[] result)
     {
         int n = result.length;
 
@@ -22,8 +30,12 @@ public class Gaussian_Solver_Behavior implements Matrix_Solve_Behavior
                     max = i;
                 }
             }
-            double[] temp = input[p]; input[p] = input[max]; input[max] = temp;
-            double   t    = result[p]; result[p] = result[max]; result[max] = t;
+            double[] temp = input[p];
+            input[p] = input[max];
+            input[max] = temp;
+            double t = result[p];
+            result[p] = result[max];
+            result[max] = t;
             // singular or nearly singular
             if (Math.abs(input[p][p]) <= EPSILON) {
                 throw new ArithmeticException("Matrix is singular or nearly singular");
@@ -49,5 +61,11 @@ public class Gaussian_Solver_Behavior implements Matrix_Solve_Behavior
             x[i] = (result[i] - sum) / input[i][i];
         }
         return x;
+    }
+
+    @Override
+    public double[] solve(double[][] input, double[] result)
+    {
+        return gaussian(input, result);
     }
 }
